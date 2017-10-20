@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Index</title>
+</head>
+<body>
+<h1>Welcome</h1>
+
+<h2>Productos</h2>
+    <div th:if="${products}">
+        <table border="1">
+            <tr>
+                <th>Id</th>
+                <th>nombre</th>
+                <th>categoria</th>
+                <th>precio</th>
+                <th>descripcion</th>
+                <th>Imagen</th>
+            </tr>
+            <tr th:each="product: ${products}">
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.nombre}"></td>
+                <td th:text="${product.categoria}"></td>
+                <td th:text="${product.precio}"></td>
+                <td th:text="${product.descripcion}"></td>
+                <td><img th:src="@{/files?id=__${product.id}__}" alt="File not found" /></td>
+                <td><a th:href="@{/delete-product?id=__${product.id}__}">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+    <div th:unless="${products}">
+        <h2>No existen productos...</h2>
+    </div>
+
+<form th:action="@{/new-product}" method="post" th:object="${product}" enctype="multipart/form-data">
+    <p>
+        <label for="nombre">Nombre</label>
+        <input th:field="*{nombre}" />
+    </p>
+    <p>
+        <label for="categoria">categoria</label>
+        <input th:field="*{categoria}" />
+    </p>
+    <p>
+        <label for="precio">precio</label>
+        <input type="number" th:field="*{precio}" step="0.001" />
+    </p>
+    <p>
+        <label for="imagen">imagen</label>
+        <input type="file" th:field="*{imagen}" />
+    </p>
+    <p>
+        <label for="descripcion">descripcion</label>
+        <input th:field="*{descripcion}" />
+    </p>
+
+    <p>
+        <input type="submit" value="Save" />
+    </p>
+
+</form>
+</body>
+</html>

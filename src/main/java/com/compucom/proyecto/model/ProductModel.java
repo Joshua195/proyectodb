@@ -1,30 +1,24 @@
-package com.compucom.proyecto.entity;
+package com.compucom.proyecto.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.io.Serializable;
+import org.springframework.web.multipart.MultipartFile;
 
-@Entity
-public class Producto implements Serializable{
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class ProductModel {
     private Integer id;
     private String nombre;
     private String categoria;
     private Double precio;
-    private String imagen;
+    private MultipartFile imagen;
     private String descripcion;
 
-    public Producto() {
+    public ProductModel() {
     }
 
-    public Producto(String nombre, String categoria, Double precio, String descripcion) {
+    public ProductModel(Integer id, String nombre, String categoria, Double precio, MultipartFile imagen, String descripcion) {
+        this.id = id;
         this.nombre = nombre;
         this.categoria = categoria;
         this.precio = precio;
+        this.imagen = imagen;
         this.descripcion = descripcion;
     }
 
@@ -60,11 +54,11 @@ public class Producto implements Serializable{
         this.precio = precio;
     }
 
-    public String getImagen() {
+    public MultipartFile getImagen() {
         return imagen;
     }
 
-    public void setImagen(String imagen) {
+    public void setImagen(MultipartFile imagen) {
         this.imagen = imagen;
     }
 
@@ -78,12 +72,12 @@ public class Producto implements Serializable{
 
     @Override
     public String toString() {
-        return "Producto{" +
+        return "ProductModel{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", categoria='" + categoria + '\'' +
                 ", precio=" + precio +
-                ", imagen='" + imagen + '\'' +
+                ", imagen=" + imagen +
                 ", descripcion='" + descripcion + '\'' +
                 '}';
     }

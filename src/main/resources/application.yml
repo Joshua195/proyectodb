@@ -1,8 +1,13 @@
 spring:
   datasource:
-    url: jdbc:sql://localhost:3306/proyectodb?useSSL=false
+    url: jdbc:mysql://localhost:3306/proyectodb?useSSL=false
     username: root
     password: admin
+
+  http:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
 
   jpa:
     hibernate:
@@ -14,4 +19,4 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
 
-    show-sql: true
+#    show-sql: true
